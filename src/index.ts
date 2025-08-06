@@ -25,6 +25,16 @@ export class GithubAgent<
             options.workspace,
           ],
         },
+        filesystem: {
+          command: 'npx',
+          args: [
+            '-y',
+            '@agent-infra/mcp-server-filesystem@latest',
+            '--allowed-directories',
+            // @ts-expect-error
+            options.workspace,
+          ],
+        },
         github: {
           command: 'docker',
           args: [
