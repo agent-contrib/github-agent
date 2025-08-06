@@ -1,4 +1,5 @@
 import { MCPAgent, MCPAgentOptions } from '@mcp-agent/core';
+import { SYSTEM_PROMPT } from './system-prompt'
 
 export interface GithubAgentOptions extends MCPAgentOptions { }
 
@@ -13,7 +14,7 @@ export class GithubAgent<
       maxIterations: 100,
       maxTokens: 8192,
       toolCallEngine: 'prompt_engineering',
-      instructions: `You are Github Agent, a helpful assistant that can use the tools available to help users with their questions.`,
+      instructions: SYSTEM_PROMPT,
       mcpServers: {
         commands: {
           command: 'npx',
