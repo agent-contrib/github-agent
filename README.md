@@ -97,6 +97,6 @@ MIT © [agent-contrib](https://github.com/agent-contrib)
 
 ## Related Projects
 
-- [@mcp-agent/core](https://github.com/mcp-agent/core) - Core MCP Agent framework
-- [@agent-infra/mcp-server-commands](https://github.com/agent-infra/mcp-server-commands) - Command execution server
+- [@mcp-agent/core](https://www.npmjs.com/package/@mcp-agent/core) - Core MCP Agent framework
+- [@agent-infra/mcp-server-commands](https://www.npmjs.com/package/@agent-infra/mcp-server-commands) - Command execution server
 - [GitHub MCP Server](https://github.com/github/github-mcp-server) - Official GitHub MCP integration
