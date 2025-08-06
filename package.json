@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "@agent-infra/browser-search": "^0.0.5",
-    "@agent-infra/mcp-server-filesystem": "^0.1.0",
     "@mcp-agent/core": "0.3.0-beta.1"
   },
   "devDependencies": {
