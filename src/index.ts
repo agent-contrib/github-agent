@@ -30,6 +30,9 @@ export class GithubAgent<
           args: [
             '-y',
             '@agent-infra/mcp-server-filesystem@latest',
+            '--allowed-directories',
+            // @ts-expect-error
+            options.workspace,
           ],
         },
         github: {
