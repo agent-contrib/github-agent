@@ -1,54 +1,47 @@
 name: Feature Request
-description: Suggest an idea for this project
+description: Suggest a new feature for GitHub Agent
 title: "[Feature]: "
 labels: ["enhancement"]
-assignees: []
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for suggesting a new feature!
-
   - type: textarea
-    id: problem
+    id: summary
     attributes:
-      label: Is your feature request related to a problem?
-      description: A clear and concise description of what the problem is.
-      placeholder: I'm always frustrated when...
+      label: Summary
+      description: |
+        **Problem**: What problem does this feature solve?
+        **Proposed Solution**: How should this feature work?
+      placeholder: |
+        **Problem**: Currently, GitHub Agent cannot...
+        **Proposed Solution**: Add a new command that allows users to...
     validations:
-      required: false
+      required: true
 
   - type: textarea
-    id: solution
+    id: expected
     attributes:
-      label: Describe the solution you'd like
-      description: A clear and concise description of what you want to happen.
-      placeholder: I would like to...
+      label: Expected Behavior
+      description: How should this feature work? Include usage examples.
+      placeholder: |
+        ```typescript
+        const agent = new GithubAgent(...);
+        await agent.run("new command that does...");
+        ```
     validations:
       required: true
 
   - type: textarea
     id: alternatives
     attributes:
-      label: Describe alternatives you've considered
-      description: A clear and concise description of any alternative solutions or features you've considered.
-      placeholder: I have considered...
+      label: Alternatives
+      description: Any alternative solutions or workarounds you've considered?
+      placeholder: I could manually do X, but it would be better if...
     validations:
       required: false
 
   - type: textarea
-    id: additional-context
+    id: context
     attributes:
-      label: Additional context
-      description: Add any other context or screenshots about the feature request here.
+      label: Additional Context
+      description: Any other context, screenshots, or related issues?
     validations:
       required: false
-
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our Code of Conduct
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
