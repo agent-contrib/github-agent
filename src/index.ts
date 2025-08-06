@@ -1,9 +1,6 @@
 import { MCPAgent, MCPAgentOptions } from '@mcp-agent/core';
 
-export interface GithubAgentOptions extends MCPAgentOptions {
-  /** The workspace directory for filesystem operations */
-  workspace?: string;
-}
+export interface GithubAgentOptions extends MCPAgentOptions { }
 
 export class GithubAgent<
   T extends GithubAgentOptions = GithubAgentOptions,
@@ -11,16 +8,12 @@ export class GithubAgent<
   static readonly label = '@tarko/github-agent';
 
   constructor(options: T) {
-    const workspace = options.workspace || process.cwd();
-    
     super({
       ...options,
       maxIterations: 100,
       maxTokens: 8192,
       toolCallEngine: 'prompt_engineering',
-      instructions: `You are Github Agent, a helpful assistant that can use the tools available to help users with their questions.
-
-Current time: ${new Date().toLocaleString()}`,
+      instructions: `You are Github Agent, a helpful assistant that can use the tools available to help users with their questions.`,
       mcpServers: {
         commands: {
           command: 'npx',
@@ -28,7 +21,8 @@ Current time: ${new Date().toLocaleString()}`,
             '-y',
             '@agent-infra/mcp-server-commands@latest',
             '--cwd',
-            workspace,
+            // @ts-expect-error
+            options.workspace,
           ],
         },
         filesystem: {
@@ -36,7 +30,8 @@ Current time: ${new Date().toLocaleString()}`,
           args: [
             '-y',
             '@agent-infra/mcp-server-filesystem@latest',
-            workspace,
+            // @ts-expect-error
+            options.workspace,
           ],
         },
         github: {
