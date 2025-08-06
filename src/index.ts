@@ -30,8 +30,6 @@ export class GithubAgent<
           args: [
             '-y',
             '@agent-infra/mcp-server-filesystem@latest',
-            // @ts-expect-error
-            options.workspace,
           ],
         },
         github: {
