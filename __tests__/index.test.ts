@@ -1,7 +1,7 @@
 import { it, expect } from 'vitest'
-import { SearchAgent } from '../src';
+import { GithubAgent } from '../src';
 
-it('SearchAgent', () => {
-  const searchAgent = new SearchAgent({});
-  expect(searchAgent.status()).toBe('idle');
+it('GithubAgent', () => {
+  const githubAgent = new GithubAgent({ workspace: process.cwd() });
+  expect(githubAgent.status()).toBe('idle');
 });
