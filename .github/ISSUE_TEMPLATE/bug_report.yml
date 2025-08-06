@@ -1,71 +1,62 @@
 name: Bug Report
-description: File a bug report to help us improve
+description: Report a bug with GitHub Agent
 title: "[Bug]: "
-labels: ["bug", "triage"]
-assignees: []
+labels: ["bug"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
-
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: false
-
   - type: textarea
-    id: what-happened
+    id: summary
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      label: Summary
+      description: |
+        **Problem**: Describe the issue you encountered
+        **Minimal Reproduction**: Steps to reproduce the behavior
+      placeholder: |
+        **Problem**: GitHub Agent fails to create issues when...
+        **Minimal Reproduction**:
+        1. Initialize agent with...
+        2. Run command...
+        3. Error occurs...
     validations:
       required: true
 
-  - type: dropdown
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+      placeholder: The agent should successfully create an issue...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened? Include error messages or logs.
+      placeholder: |
+        Error: Failed to create issue
+        Stack trace: ...
+    validations:
+      required: true
+
+  - type: input
     id: version
     attributes:
       label: Version
-      description: What version of our software are you running?
-      options:
-        - 1.0.2 (Default)
-        - 1.0.1
-        - 1.0.0
-        - main (development)
+      description: Which version of GitHub Agent are you using?
+      placeholder: "1.0.2 or main branch"
     validations:
       required: true
 
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-        - Node.js
-        - Other
-
   - type: textarea
-    id: logs
+    id: environment
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
-
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
+      label: Environment
+      description: Your setup details (Node.js version, OS, etc.)
+      placeholder: |
+        - Node.js: v18.17.0
+        - OS: macOS 13.4
+        - Docker: 24.0.2
+      render: markdown
+    validations:
+      required: false
