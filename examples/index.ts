@@ -6,7 +6,6 @@ const githubAgent = new GithubAgent({
     id: "ep-20250613182556-7z8pl",
     apiKey: process.env.ARK_API_KEY,
   },
-  workspace: process.cwd(),
 });
 
 async function main() {
