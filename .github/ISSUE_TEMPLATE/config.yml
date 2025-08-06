@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Community Discussions
+    url: https://github.com/agent-contrib/github-agent/discussions
+    about: Please ask and answer questions here.
+  - name: GitHub Security
+    url: https://github.com/agent-contrib/github-agent/security/advisories/new
+    about: Please report security vulnerabilities here.
