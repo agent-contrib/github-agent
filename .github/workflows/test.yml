@@ -1,0 +1,29 @@
+# https://pnpm.io/zh/5.x/continuous-integration
+
+name: tests
+on:
+  push:
+  pull_request:
+    branches: [ $default-branch ]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18,20]
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 9 # pnpm 10 would cause some problems
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    - name: install
+      run: pnpm install
+    - name: build
+      run: pnpm build
+    - name: test
+      run: pnpm test:coverage
