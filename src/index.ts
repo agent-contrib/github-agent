@@ -11,6 +11,7 @@ export class GithubAgent<
     super({
       ...options,
       maxIterations: 100,
+      maxTokens: 8192,
       toolCallEngine: 'prompt_engineering',
       instructions: `You are Github Agent, a helpful assistant that can use the tools available to help users with their questions.`,
       mcpServers: {
