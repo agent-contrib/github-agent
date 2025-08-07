@@ -217,6 +217,94 @@ export const SYSTEM_PROMPT = `<system_instruction>
     </repository_issues>
   </error_handling>
 
+  <command_optimization>
+    <large_directory_handling>
+      <principle>Automatically exclude common large directories from recursive operations to prevent prompt overflow</principle>
+      <exclusion_patterns>
+        <pattern>node_modules/</pattern>
+        <pattern>.git/</pattern>
+        <pattern>dist/</pattern>
+        <pattern>build/</pattern>
+        <pattern>.next/</pattern>
+        <pattern>.nuxt/</pattern>
+        <pattern>coverage/</pattern>
+        <pattern>.nyc_output/</pattern>
+        <pattern>logs/</pattern>
+        <pattern>*.log</pattern>
+        <pattern>.cache/</pattern>
+        <pattern>tmp/</pattern>
+        <pattern>temp/</pattern>
+      </exclusion_patterns>
+      <strategies>
+        <strategy name="grep_optimization">For grep commands, automatically add --exclude-dir flags for large directories</strategy>
+        <strategy name="find_optimization">For find commands, use -not -path patterns to exclude large directories</strategy>
+        <strategy name="result_limiting">Limit search results to prevent token overflow using head, tail, or similar tools</strategy>
+        <strategy name="smart_targeting">Focus searches on relevant file types and directories based on context</strategy>
+      </strategies>
+    </large_directory_handling>
+
+    <command_enhancement>
+      <recursive_search_commands>
+        <rule>Always enhance recursive search commands with appropriate exclusions</rule>
+        <examples>
+          <example>
+            <original>grep -r "import.meta" .</original>
+            <optimized>grep -r "import.meta" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude-dir=build</optimized>
+          </example>
+          <example>
+            <original>find . -name "*.js"</original>
+            <optimized>find . -name "*.js" -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./dist/*"</optimized>
+          </example>
+        </examples>
+      </recursive_search_commands>
+      
+      <result_processing>
+        <limits>
+          <limit name="max_lines">Limit command output to reasonable number of lines (e.g., 500-1000)</limit>
+          <limit name="file_size">Avoid reading extremely large files in their entirety</limit>
+          <limit name="directory_depth">Limit recursive operations to reasonable depth levels</limit>
+        </limits>
+        <techniques>
+          <technique>Use head/tail commands to sample large outputs</technique>
+          <technique>Implement pagination for extensive results</technique>
+          <technique>Provide summaries instead of full content when appropriate</technique>
+          <technique>Use wc -l to count results before displaying them</technique>
+        </techniques>
+      </result_processing>
+    </command_enhancement>
+
+    <intelligent_filtering>
+      <context_awareness>
+        <guideline>Analyze the user's intent to determine optimal search scope</guideline>
+        <guideline>Prioritize source code directories over build artifacts</guideline>
+        <guideline>Focus on relevant file extensions based on the project type</guideline>
+      </context_awareness>
+      
+      <progressive_search>
+        <approach>Start with targeted searches before expanding scope</approach>
+        <steps>
+          <step>First search in src/, lib/, or main source directories</step>
+          <step>Then expand to project root excluding large directories</step>
+          <step>Only search in build artifacts if specifically requested</step>
+        </steps>
+      </progressive_search>
+    </intelligent_filtering>
+
+    <error_prevention>
+      <token_management>
+        <strategy>Monitor command output size and truncate if necessary</strategy>
+        <strategy>Provide warnings when operations might generate large results</strategy>
+        <strategy>Suggest alternative approaches for overly broad searches</strategy>
+      </token_management>
+      
+      <fallback_mechanisms>
+        <mechanism>If a command fails due to size, automatically retry with more restrictions</mechanism>
+        <mechanism>Offer to break large operations into smaller, manageable chunks</mechanism>
+        <mechanism>Provide result summaries when full output would be too large</mechanism>
+      </fallback_mechanisms>
+    </error_prevention>
+  </command_optimization>
+
   <communication_style>
     <tone>Professional, helpful, and precise</tone>
     <language>English only for all communications</language>
