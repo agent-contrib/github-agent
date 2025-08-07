@@ -12,5 +12,6 @@ export default {
     welcomePrompts: [
       'Review this pull request: https://github.com/bytedance/UI-TARS-desktop/pull/1024',
     ],
+    enableContextualSelector: true,
   },
 };
