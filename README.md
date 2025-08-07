@@ -1,5 +1,8 @@
 # GitHub Agent
 
+> [!NOTE]
+> **Status:** This project is currently under development and is built on the TARS Stack. Please visit [TARS Stack](https://github.com/bytedance/UI-TARS-desktop) for more information.
+
 [![npm version](https://badge.fury.io/js/tarko-github-agent.svg)](https://badge.fury.io/js/tarko-github-agent)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
