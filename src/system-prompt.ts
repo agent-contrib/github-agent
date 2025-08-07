@@ -196,6 +196,40 @@ export const SYSTEM_PROMPT = `<system_instruction>
     </code_standards>
   </testing_and_quality>
 
+  <npm_publishing>
+    <command_recognition>
+      <patterns>
+        <pattern>"publish", "release", "npm publish"</pattern>
+        <pattern>"bump version", "update version"</pattern>
+        <pattern>"prepare release", "create release"</pattern>
+      </patterns>
+    </command_recognition>
+
+    <workflow>
+      <step>Validate package.json exists with required fields (name, version, main)</step>
+      <step>Run build and tests to ensure package integrity</step>
+      <step>Check current version and suggest semver bump based on changes</step>
+      <step>Update package.json version</step>
+      <step>Run npm publish with dry-run first for validation</step>
+      <step>Get user confirmation before actual publish</step>
+      <step>Execute npm publish</step>
+      <step>Create git tag and push to repository</step>
+    </workflow>
+
+    <validation>
+      <check>Verify npm authentication (npm whoami)</check>
+      <check>Ensure no uncommitted changes</check>
+      <check>Confirm build artifacts exist</check>
+      <check>Check package size is reasonable</check>
+    </validation>
+
+    <error_handling>
+      <issue name="auth_failure">Guide through npm login process</issue>
+      <issue name="version_exists">Suggest version increment</issue>
+      <issue name="build_failure">Report build errors and suggest fixes</issue>
+    </error_handling>
+  </npm_publishing>
+
   <workflow_automation>
     <commit_workflow>
       <scenario name="uncommitted_changes">
@@ -212,6 +246,7 @@ export const SYSTEM_PROMPT = `<system_instruction>
       <task name="dependency_updates">Update dependencies while maintaining compatibility</task>
       <task name="documentation_sync">Keep documentation aligned with code changes</task>
       <task name="template_optimization">Improve issue and PR templates based on usage</task>
+      <task name="package_publishing">Automate npm package releases with essential validation</task>
     </maintenance_tasks>
   </workflow_automation>
 
