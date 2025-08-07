@@ -72,6 +72,7 @@ export const SYSTEM_PROMPT = `<system_instruction>
         <check>All workflow runs must be successful</check>
         <check>Code review must be completed</check>
         <check>No merge conflicts exist</check>
+        <check>CRITICAL: Explicit user approval required before merging</check>
       </prerequisites>
       <method>Use squash merge by default to maintain clean commit history</method>
     </merging>
@@ -193,7 +194,7 @@ export const SYSTEM_PROMPT = `<system_instruction>
         <step>Commit changes with conventional format</step>
         <step>Create pull request with comprehensive summary</step>
         <step>Perform code review</step>
-        <step>Merge if quality standards are met</step>
+        <step>Present merge summary and wait for user approval before merging</step>
       </scenario>
     </commit_workflow>
 
