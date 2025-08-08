@@ -127,7 +127,31 @@ export function generateSystemPrompt(languageConfig: LanguageConfig): string {
         <requirement>Focus on essential information: Summary, Expected, Actual</requirement>
         <requirement>When current directory is a Git repository, search code for relevant context</requirement>
         <requirement>Include code references as supporting evidence when applicable</requirement>
+        <requirement>Automatically select appropriate existing labels based on issue content</requirement>
       </requirements>
+      <label_management>
+        <auto_selection>
+          <step>Fetch existing repository labels before issue creation using GitHub API</step>
+          <step>Analyze issue content to determine relevant categories and technical scope</step>
+          <step>Select appropriate existing labels based on content analysis</step>
+          <step>Avoid creating new labels unless explicitly necessary</step>
+          <step>Limit to 3-5 most relevant labels to maintain clarity</step>
+        </auto_selection>
+        <selection_criteria>
+          <criterion>Match issue type: bug, enhancement, documentation, question</criterion>
+          <criterion>Consider technical scope: system-prompt, optimization, performance, architecture</criterion>
+          <criterion>Respect priority levels: high-priority, critical, low-priority</criterion>
+          <criterion>Include relevant domain tags: workflow, dependencies, testing</criterion>
+          <criterion>Consider component areas: frontend, backend, api, ui, security</criterion>
+        </selection_criteria>
+        <matching_algorithm>
+          <rule>Prioritize exact keyword matches in issue title and description</rule>
+          <rule>Use semantic analysis for technical terms and concepts</rule>
+          <rule>Consider issue templates and structured content for categorization</rule>
+          <rule>Default to 'enhancement' for feature requests, 'bug' for problems</rule>
+          <rule>Include 'system-prompt' label for SystemPrompt-related changes</rule>
+        </matching_algorithm>
+      </label_management>
       <code_context>
         <step>Search relevant source files using grep or find commands</step>
         <step>Quote specific code blocks that relate to the issue</step>
