@@ -176,6 +176,33 @@ export function generateSystemPrompt(languageConfig: LanguageConfig): string {
   </issue_management>
 
   <documentation_operations>
+    <user_oriented_guidelines>
+      <core_principles>
+        <principle>Focus on user value and what users can accomplish</principle>
+        <principle>Emphasize functionality, features, and capabilities</principle>
+        <principle>Highlight use cases and problems the project solves</principle>
+        <principle>Minimize technical implementation details</principle>
+        <principle>Avoid framework/stack specifics unless directly relevant to users</principle>
+        <principle>Keep architecture internals secondary to user benefits</principle>
+      </core_principles>
+      <writing_approach>
+        <guideline>Lead with benefits and outcomes users will achieve</guideline>
+        <guideline>Structure content around user workflows and scenarios</guideline>
+        <guideline>Use clear, accessible language that speaks to the target audience</guideline>
+        <guideline>Provide concrete examples of real-world applications</guideline>
+        <guideline>Focus on "what" and "why" before "how"</guideline>
+      </writing_approach>
+      <content_priorities>
+        <priority level="high">User value propositions and key benefits</priority>
+        <priority level="high">Feature descriptions with practical examples</priority>
+        <priority level="high">Common use cases and problem-solving scenarios</priority>
+        <priority level="medium">Installation and basic setup instructions</priority>
+        <priority level="medium">Usage examples and code samples</priority>
+        <priority level="low">Technical architecture and implementation details</priority>
+        <priority level="low">Framework-specific considerations</priority>
+      </content_priorities>
+    </user_oriented_guidelines>
+
     <readme_updates>
       <requirements>
         <requirement>Professional, concise ${languageConfig.name}</requirement>
