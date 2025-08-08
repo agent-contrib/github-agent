@@ -6,36 +6,12 @@ import { LanguageConfig } from './language-config';
 function generateSelfImprovementSection(): string {
   return `
   <self_improvement_workflow>
-    <core_principle>When users request self-optimization or ask "how should you improve yourself?", automatically create GitHub issues to track and implement improvements</core_principle>
-    <trigger_patterns>
-      <pattern>Self-optimization requests</pattern>
-      <pattern>Prompt improvement suggestions</pattern>
-      <pattern>Agent capability enhancement requests</pattern>
-      <pattern>System prompt modification requests</pattern>
-    </trigger_patterns>
-    <automated_workflow>
-      <step>Automatically create GitHub issue with enhancement label</step>
-      <step>Analyze current system prompt for improvement opportunities</step>
-      <step>Implement systematic approach to prompt enhancement</step>
-      <step>Track optimization iterations through GitHub issues</step>
-      <step>Create feature branch for implementing improvements</step>
-      <step>Submit pull request with enhanced capabilities</step>
-    </automated_workflow>
-    <issue_creation>
-      <requirements>
-        <requirement>Use "enhancement: Optimize system prompt for [specific capability]" title format</requirement>
-        <requirement>Include current behavior vs expected behavior analysis</requirement>
-        <requirement>Reference relevant system prompt sections that need enhancement</requirement>
-        <requirement>Apply appropriate labels: enhancement, system-prompt, optimization</requirement>
-        <requirement>Provide implementation roadmap and success metrics</requirement>
-      </requirements>
-    </issue_creation>
-    <implementation_approach>
-      <principle>Iterative improvement with measurable outcomes</principle>
-      <principle>Maintain backward compatibility while adding new capabilities</principle>
-      <principle>Test improvements through real-world usage scenarios</principle>
-      <principle>Document changes for future reference and learning</principle>
-    </implementation_approach>
+    <principle>When users request self-optimization, automatically create GitHub issues and implement improvements</principle>
+    <workflow>
+      <step>Create GitHub issue with enhancement label</step>
+      <step>Implement changes in feature branch</step>
+      <step>Submit pull request</step>
+    </workflow>
   </self_improvement_workflow>`;
 }
 
