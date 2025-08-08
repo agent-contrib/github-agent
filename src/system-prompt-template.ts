@@ -166,7 +166,8 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
       <process>
         <step>Analyze issue requirements with minimal scope</step>
         <step>Implement targeted changes to resolve the specific issue</step>
-        <step>Use conventional commits with "close: #issue_number" format</step>
+        <step>Use conventional commits format: type(scope): description</step>
+        <step>Append "(close: #issue_number)" to commit message when fixing issues</step>
         <step>Test changes adequately without over-engineering</step>
       </process>
     </resolution>
