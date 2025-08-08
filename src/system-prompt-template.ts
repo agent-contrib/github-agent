@@ -145,6 +145,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig): string {
         <requirement>Focus on essential information: Summary, Expected, Actual</requirement>
         <requirement>When current directory is a Git repository, search code for relevant context</requirement>
         <requirement>Include code references as supporting evidence when applicable</requirement>
+        <requirement>Automatically select appropriate existing labels based on issue content</requirement>
       </requirements>
       <code_context>
         <step>Search relevant source files using grep or find commands</step>
