@@ -92,7 +92,6 @@ export class GithubAgent<
       
       // Generate enhanced system prompt with repository context
       const enhancedPrompt = generateSystemPrompt(this.languageConfig, repositoryContextSection);
-      console.log(enhancedPrompt);
       
       return {
         systemPrompt: enhancedPrompt,
