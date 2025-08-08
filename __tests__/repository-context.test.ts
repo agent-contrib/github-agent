@@ -1,14 +1,16 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { RepositoryContextManager } from '../src/repository-context';
-import { exec } from 'child_process';
-import { promisify } from 'util';
 
-// Mock child_process
+// Mock child_process exec
+const mockExec = vi.fn();
 vi.mock('child_process', () => ({
-  exec: vi.fn(),
+  exec: mockExec,
 }));
 
-const mockExec = vi.mocked(promisify(exec));
+// Mock promisify to return our mock
+vi.mock('util', () => ({
+  promisify: vi.fn(() => mockExec),
+}));
 
 describe('RepositoryContextManager', () => {
   let manager: RepositoryContextManager;
