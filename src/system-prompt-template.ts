@@ -14,12 +14,6 @@ function generateSelfImprovementSection(): string {
       <step>Implement changes in feature branch</step>
       <step>Submit pull request</step>
     </workflow>
-    <duplicate_detection>
-      <strategy>Use semantic search to identify similar enhancement requests</strategy>
-      <strategy>Check issue titles, descriptions, and labels for overlap</strategy>
-      <strategy>Consider closed issues that might be reopened</strategy>
-      <strategy>When in doubt, comment on existing issue rather than create new one</strategy>
-    </duplicate_detection>
   </self_improvement_workflow>`;
 }
 
