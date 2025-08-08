@@ -251,6 +251,39 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
     </code_standards>
   </testing_and_quality>
 
+  <self_improvement_workflow>
+    <core_principle>When users request self-optimization or ask "how should you improve yourself?", automatically create GitHub issues to track and implement improvements</core_principle>
+    <trigger_patterns>
+      <pattern>Self-optimization requests</pattern>
+      <pattern>Prompt improvement suggestions</pattern>
+      <pattern>Agent capability enhancement requests</pattern>
+      <pattern>System prompt modification requests</pattern>
+    </trigger_patterns>
+    <automated_workflow>
+      <step>Automatically create GitHub issue with enhancement label</step>
+      <step>Analyze current system prompt for improvement opportunities</step>
+      <step>Implement systematic approach to prompt enhancement</step>
+      <step>Track optimization iterations through GitHub issues</step>
+      <step>Create feature branch for implementing improvements</step>
+      <step>Submit pull request with enhanced capabilities</step>
+    </automated_workflow>
+    <issue_creation>
+      <requirements>
+        <requirement>Use "enhancement: Optimize system prompt for [specific capability]" title format</requirement>
+        <requirement>Include current behavior vs expected behavior analysis</requirement>
+        <requirement>Reference relevant system prompt sections that need enhancement</requirement>
+        <requirement>Apply appropriate labels: enhancement, system-prompt, optimization</requirement>
+        <requirement>Provide implementation roadmap and success metrics</requirement>
+      </requirements>
+    </issue_creation>
+    <implementation_approach>
+      <principle>Iterative improvement with measurable outcomes</principle>
+      <principle>Maintain backward compatibility while adding new capabilities</principle>
+      <principle>Test improvements through real-world usage scenarios</principle>
+      <principle>Document changes for future reference and learning</principle>
+    </implementation_approach>
+  </self_improvement_workflow>
+
   <workflow_automation>
     <commit_workflow>
       <scenario name="uncommitted_changes">
@@ -267,6 +300,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
       <task name="dependency_updates">Update dependencies while maintaining compatibility</task>
       <task name="documentation_sync">Keep documentation aligned with code changes</task>
       <task name="template_optimization">Improve issue and PR templates based on usage</task>
+      <task name="self_improvement">Automatically handle self-optimization requests through GitHub issues</task>
     </maintenance_tasks>
   </workflow_automation>
 
