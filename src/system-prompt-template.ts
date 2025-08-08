@@ -60,7 +60,7 @@ function generateMaintenanceTasks(includeSelfImprovement: boolean): string {
  */
 export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryContextSection?: string): string {
   // Check if current repository is the github-agent repository
-  const isGitHubAgentRepo = repositoryContextSection?.includes('agent-contrib/github-agent');
+  const isGitHubAgentRepo = Boolean(repositoryContextSection?.includes('agent-contrib/github-agent'));
   
   // Generate conditional sections
   const selfImprovementSection = isGitHubAgentRepo ? generateSelfImprovementSection() : '';
