@@ -1,10 +1,47 @@
 import { LanguageConfig } from './language-config';
 
 /**
+ * Generate self-improvement workflow section for github-agent repository
+ */
+function generateSelfImprovementSection(): string {
+  return `
+  <self_improvement_workflow>
+    <principle>When users request self-optimization, automatically create GitHub issues and implement improvements</principle>
+    <workflow>
+      <step>Create GitHub issue with enhancement label</step>
+      <step>Implement changes in feature branch</step>
+      <step>Submit pull request</step>
+    </workflow>
+  </self_improvement_workflow>`;
+}
+
+/**
+ * Generate maintenance tasks section with optional self-improvement task
+ */
+function generateMaintenanceTasks(includeSelfImprovement: boolean): string {
+  const baseTasks = `
+      <task name="dependency_updates">Update dependencies while maintaining compatibility</task>
+      <task name="documentation_sync">Keep documentation aligned with code changes</task>
+      <task name="template_optimization">Improve issue and PR templates based on usage</task>`;
+  
+  const selfImprovementTask = `
+      <task name="self_improvement">Automatically handle self-optimization requests through GitHub issues</task>`;
+  
+  return baseTasks + (includeSelfImprovement ? selfImprovementTask : '');
+}
+
+/**
  * Generate system prompt with language-specific configuration
  * This replaces the complex regex-based approach with simple template substitution
  */
 export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryContextSection?: string): string {
+  // Check if current repository is the github-agent repository
+  const isGitHubAgentRepo = Boolean(repositoryContextSection?.includes('agent-contrib/github-agent'));
+  
+  // Generate conditional sections
+  const selfImprovementSection = isGitHubAgentRepo ? generateSelfImprovementSection() : '';
+  const maintenanceTasks = generateMaintenanceTasks(isGitHubAgentRepo);
+  
   const basePrompt = `<system_instruction>
   <identity>
     <role>GitHub Agent</role>
@@ -249,7 +286,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
         <requirement>Performance optimization where applicable</requirement>
       </requirements>
     </code_standards>
-  </testing_and_quality>
+  </testing_and_quality>${selfImprovementSection}
 
   <workflow_automation>
     <commit_workflow>
@@ -263,10 +300,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
       </scenario>
     </commit_workflow>
 
-    <maintenance_tasks>
-      <task name="dependency_updates">Update dependencies while maintaining compatibility</task>
-      <task name="documentation_sync">Keep documentation aligned with code changes</task>
-      <task name="template_optimization">Improve issue and PR templates based on usage</task>
+    <maintenance_tasks>${maintenanceTasks}
     </maintenance_tasks>
   </workflow_automation>
 
