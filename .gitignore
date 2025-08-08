@@ -3,3 +3,10 @@ lib
 esm
 .DS_Store
 dist
+
+# Debug/logging directories
+L0az389IL90JbOyjWcv1M/
+**/event-stream.jsonl
+**/llm-request.jsonl
+**/llm-response.jsonl
+**/tool-calls.jsonl
