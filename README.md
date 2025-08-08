@@ -13,12 +13,22 @@ A powerful GitHub Agent built on the MCP (Model Context Protocol) framework that
 
 ## Features
 
-- 🤖 **Intelligent GitHub Operations** - Perform complex GitHub tasks through natural language
-- 🌐 **Multi-Language Support** - Communicate in English, Chinese, Japanese, Spanish, French, German, or auto-detect
-- 🔧 **MCP Framework** - Built on the robust Model Context Protocol
-- 🐳 **Docker Integration** - Seamless containerized GitHub MCP server
-- 📦 **TypeScript Support** - Full type safety and modern development experience
-- ⚡ **High Performance** - Optimized for speed with up to 100 iterations and 8K token limit
+### 🤖 GitHub Automation
+- Semantic branch management and automated PRs
+- Issue creation with intelligent labeling
+- Code reviews with CI/CD status validation
+- Repository context verification
+
+### 🔧 Development Tools
+- Intelligent code search and analysis
+- File operations and dependency management
+- Template generation and documentation
+- Workflow automation and notifications
+
+### 🌐 Multi-Language Support
+- 6 languages with auto-detection
+- Localized templates and documentation
+- Consistent communication across operations
 
 ## Installation
 
