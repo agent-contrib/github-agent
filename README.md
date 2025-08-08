@@ -14,6 +14,7 @@ A powerful GitHub Agent built on the MCP (Model Context Protocol) framework that
 ## Features
 
 - 🤖 **Intelligent GitHub Operations** - Perform complex GitHub tasks through natural language
+- 🌐 **Multi-Language Support** - Communicate in English, Chinese, Japanese, Spanish, French, German, or auto-detect
 - 🔧 **MCP Framework** - Built on the robust Model Context Protocol
 - 🐳 **Docker Integration** - Seamless containerized GitHub MCP server
 - 📦 **TypeScript Support** - Full type safety and modern development experience
@@ -41,6 +42,7 @@ const agent = new GithubAgent({
     apiKey: process.env.OPENAI_API_KEY,
   },
   workspace: process.cwd(), // your working directory
+  language: 'en', // optional: 'en', 'zh', 'ja', 'es', 'fr', 'de', 'auto'
 });
 
 // Use the agent
@@ -56,10 +58,45 @@ console.log(response.content);
 
 ## Configuration
 
+### GitHub Authentication
+
 The GitHub Agent requires a GitHub Personal Access Token to interact with GitHub APIs:
 
 ```bash
 export GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token_here
+```
+
+### Language Configuration
+
+The GitHub Agent supports multiple languages for communication:
+
+```typescript
+const agent = new GithubAgent({
+  // ... other options
+  language: 'zh', // Chinese
+});
+
+// Supported languages:
+// 'en' - English (default)
+// 'zh' - Chinese (中文)
+// 'ja' - Japanese (日本語)
+// 'es' - Spanish (Español)
+// 'fr' - French (Français)
+// 'de' - German (Deutsch)
+// 'auto' - Auto-detect from system locale
+```
+
+**Examples:**
+
+```typescript
+// English Agent (default)
+const enAgent = new GithubAgent({ language: 'en' });
+
+// Chinese Agent - will create issues and PRs in Chinese
+const zhAgent = new GithubAgent({ language: 'zh' });
+
+// Auto-detect language from system
+const autoAgent = new GithubAgent({ language: 'auto' });
 ```
 
 ## Development
