@@ -14,4 +14,7 @@ export default {
     ],
     enableContextualSelector: true,
   },
+  // snapshot: {
+  //   enable: true,
+  // }
 };
