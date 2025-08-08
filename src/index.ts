@@ -1,6 +1,7 @@
-import { MCPAgent, MCPAgentOptions } from '@mcp-agent/core';
+import { MCPAgent, MCPAgentOptions, PrepareRequestContext, PrepareRequestResult } from '@mcp-agent/core';
 import { getLanguageConfig, SupportedLanguage } from './language-config';
 import { generateSystemPrompt } from './system-prompt-template';
+import { RepositoryContextManager, RepositoryContext } from './repository-context';
 
 export interface GithubAgentOptions extends MCPAgentOptions {
   /**
@@ -18,11 +19,16 @@ export class GithubAgent<
   T extends GithubAgentOptions = GithubAgentOptions,
 > extends MCPAgent<T> {
   static readonly label = '@tarko/github-agent';
+  private repositoryContextManager: RepositoryContextManager;
+  private languageConfig: ReturnType<typeof getLanguageConfig>;
 
   constructor(options: T) {
     const language = options.language || 'en';
     const languageConfig = getLanguageConfig(language);
     const systemPrompt = generateSystemPrompt(languageConfig);
+    
+    // Initialize repository context manager
+    const repositoryContextManager = new RepositoryContextManager();
     
     super({
       ...options,
@@ -66,9 +72,61 @@ export class GithubAgent<
         },
       },
     });
+    
+    // Store references for hooks
+    this.repositoryContextManager = repositoryContextManager;
+    this.languageConfig = languageConfig;
   }
 
+  /**
+   * Hook called before preparing each LLM request
+   * Automatically injects repository context into system prompt
+   */
+  async onPrepareRequest(context: PrepareRequestContext): Promise<PrepareRequestResult> {
+    try {
+      // Gather repository context
+      const repositoryContext = await this.repositoryContextManager.getContext();
+      
+      // Build repository context section
+      const repositoryContextSection = this.repositoryContextManager.buildContextSection(repositoryContext);
+      
+      // Generate enhanced system prompt with repository context
+      const enhancedPrompt = generateSystemPrompt(this.languageConfig, repositoryContextSection);
+      
+      return {
+        systemPrompt: enhancedPrompt,
+        tools: context.tools,
+      };
+    } catch (error) {
+      // Fallback to base prompt if context injection fails
+      console.warn('Failed to inject repository context:', error);
+      return {
+        systemPrompt: generateSystemPrompt(this.languageConfig),
+        tools: context.tools,
+      };
+    }
+  }
 
+  /**
+   * Hook called at the beginning of each agent loop iteration
+   * Ensures repository context is fresh for each operation
+   */
+  async onEachAgentLoopStart(sessionId: string): Promise<void> {
+    try {
+      // Refresh repository context to ensure it's current
+      await this.repositoryContextManager.refreshContext();
+    } catch (error) {
+      // Log error but don't fail the operation
+      console.warn('Failed to refresh repository context:', error);
+    }
+  }
+
+  /**
+   * Get current repository context (for debugging/testing)
+   */
+  async getRepositoryContext(): Promise<RepositoryContext> {
+    return this.repositoryContextManager.getContext();
+  }
 }
 
 export default GithubAgent;

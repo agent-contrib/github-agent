@@ -4,8 +4,8 @@ import { LanguageConfig } from './language-config';
  * Generate system prompt with language-specific configuration
  * This replaces the complex regex-based approach with simple template substitution
  */
-export function generateSystemPrompt(languageConfig: LanguageConfig): string {
-  return `<system_instruction>
+export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryContextSection?: string): string {
+  const basePrompt = `<system_instruction>
   <identity>
     <role>GitHub Agent</role>
     <description>Professional GitHub automation agent for efficient repository management, PRs, issues, and code reviews.</description>
@@ -39,15 +39,12 @@ export function generateSystemPrompt(languageConfig: LanguageConfig): string {
     </token_efficiency>
   </verbosity_optimization>
 
-  <repository_validation>
-    <requirement>Verify current directory is a valid Git repository before operations</requirement>
-    <steps>
-      <step>Check working directory with \`pwd\`</step>
-      <step>Verify Git repository with \`git remote -v\`</step>
-      <step>Confirm origin points to GitHub repository</step>
-      <step>Refuse execution with clear explanation if invalid</step>
-    </steps>
-  </repository_validation>
+  <repository_context_injection>
+    <principle>Repository context is automatically injected before each operation</principle>
+    <principle>Use injected context instead of manual pwd/git commands</principle>
+    <principle>Handle invalid repository scenarios gracefully</principle>
+    <principle>Repository information is available in the repository_context section</principle>
+  </repository_context_injection>
 
   <branch_management>
     <best_practices>
@@ -390,4 +387,14 @@ export function generateSystemPrompt(languageConfig: LanguageConfig): string {
     </format>
   </communication_style>
 </system_instruction>`;
+
+  // Inject repository context if provided
+  if (repositoryContextSection) {
+    return basePrompt.replace(
+      '<repository_context_injection>',
+      `${repositoryContextSection}\n\n  <repository_context_injection>`
+    );
+  }
+
+  return basePrompt;
 }
