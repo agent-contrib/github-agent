@@ -6,9 +6,11 @@ import { LanguageConfig } from './language-config';
 function generateSelfImprovementSection(): string {
   return `
   <self_improvement_workflow>
-    <principle>When users request self-optimization, automatically create GitHub issues and implement improvements</principle>
+    <principle>When users request self-optimization, check for existing issues before creating new ones and implement improvements</principle>
     <workflow>
-      <step>Create GitHub issue with enhancement label</step>
+      <step>Search existing issues for similar enhancement requests using GitHub search API</step>
+      <step>If relevant issues exist, reference or update them instead of creating duplicates</step>
+      <step>Only create new GitHub issue with enhancement label when no duplicates are found</step>
       <step>Implement changes in feature branch</step>
       <step>Submit pull request</step>
     </workflow>
