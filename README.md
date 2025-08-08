@@ -20,10 +20,10 @@ A powerful GitHub Agent built on the MCP (Model Context Protocol) framework that
 - Repository context verification
 
 ### 🔧 Development Tools
-- MCP framework with 3 integrated servers
-- TypeScript-first with strict typing
-- Code search with directory exclusions
+- Intelligent code search and analysis
 - File operations and dependency management
+- Template generation and documentation
+- Workflow automation and notifications
 
 ### 🌐 Multi-Language Support
 - 6 languages with auto-detection
