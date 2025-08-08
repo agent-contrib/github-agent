@@ -108,19 +108,7 @@ export class GithubAgent<
     }
   }
 
-  /**
-   * Hook called at the beginning of each agent loop iteration
-   * Ensures repository context is fresh for each operation
-   */
-  async onEachAgentLoopStart(sessionId: string): Promise<void> {
-    try {
-      // Refresh repository context to ensure it's current
-      await this.repositoryContextManager.refreshContext();
-    } catch (error) {
-      // Log error but don't fail the operation
-      console.warn('Failed to refresh repository context:', error);
-    }
-  }
+
 
   /**
    * Get current repository context (for debugging/testing)

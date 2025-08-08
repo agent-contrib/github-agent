@@ -98,8 +98,8 @@ git remote -v
 - 🛡️ **Graceful fallback** for non-Git directories
 
 **How it works**:
-1. **onPrepareRequest Hook**: Injects fresh repository context into system prompt
-2. **onEachAgentLoopStart Hook**: Ensures context stays current during long operations
+1. **onPrepareRequest Hook**: Injects repository context into system prompt with intelligent caching
+2. **Smart Cache Management**: 30-second TTL automatically refreshes context when needed
 3. **Intelligent Caching**: Avoids redundant Git commands with smart invalidation
 4. **Error Handling**: Gracefully handles non-Git directories and invalid repositories
 
