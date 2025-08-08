@@ -13,12 +13,43 @@ A powerful GitHub Agent built on the MCP (Model Context Protocol) framework that
 
 ## Features
 
-- 🤖 **Intelligent GitHub Operations** - Perform complex GitHub tasks through natural language
-- 🌐 **Multi-Language Support** - Communicate in English, Chinese, Japanese, Spanish, French, German, or auto-detect
-- 🔧 **MCP Framework** - Built on the robust Model Context Protocol
-- 🐳 **Docker Integration** - Seamless containerized GitHub MCP server
-- 📦 **TypeScript Support** - Full type safety and modern development experience
-- ⚡ **High Performance** - Optimized for speed with up to 100 iterations and 8K token limit
+### 🤖 Repository Management
+- **Smart Branch Operations** - Create semantic branches, sync with main, manage merges
+- **Automated Pull Requests** - Generate conventional commit PRs with comprehensive descriptions
+- **Issue Management** - Create, update, and resolve issues with intelligent labeling
+- **Code Review Automation** - Comprehensive CI/CD status checks and quality assessments
+- **Repository Validation** - Automatic Git repository context verification
+
+### 📝 Documentation & Templates
+- **README Generation** - Professional documentation with badges and proper npm linking
+- **Issue Templates** - Smart template management aligned with project complexity
+- **PR Templates** - Consistent pull request structure enforcement
+- **Multi-Language Documentation** - Generate docs in 6+ languages with auto-detection
+
+### 🔍 Code Intelligence
+- **Smart Code Search** - Optimized recursive searches with large directory exclusions
+- **Context-Aware Analysis** - Reference relevant code when working within Git repositories
+- **File Operations** - Create, update, and manage files with proper Git integration
+- **Dependency Management** - Update dependencies while maintaining compatibility
+
+### 🚀 Workflow Automation
+- **GitHub Actions Integration** - Monitor workflow runs, jobs, and artifacts
+- **Notification Management** - Handle GitHub notifications and subscriptions
+- **Commit Automation** - Conventional commits with semantic versioning
+- **Merge Management** - Squash merges with explicit approval requirements
+
+### 🌐 Multi-Language Support
+- **6 Languages Supported** - English, Chinese, Japanese, Spanish, French, German
+- **Auto-Detection** - Automatic language detection from system locale
+- **Consistent Communication** - Maintain language consistency throughout operations
+- **Localized Templates** - Generate issues and PRs in preferred language
+
+### 🔧 Technical Excellence
+- **MCP Framework** - Built on robust Model Context Protocol with 3 integrated servers
+- **TypeScript First** - Strict typing with no `any` types allowed
+- **Docker Integration** - Containerized GitHub MCP server for reliable API access
+- **Performance Optimized** - 100 iterations, 8K tokens, intelligent prompt engineering
+- **Command Optimization** - Automatic exclusion of large directories to prevent token overflow
 
 ## Installation
 
