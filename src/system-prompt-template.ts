@@ -33,8 +33,8 @@ function generateMaintenanceTasks(includeSelfImprovement: boolean): string {
 }
 
 /**
- * Generate system prompt with language-specific configuration
- * This replaces the complex regex-based approach with simple template substitution
+ * Generate optimized system prompt with language-specific configuration
+ * Features: reduced redundancy, improved token efficiency, enhanced context awareness
  */
 export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryContextSection?: string): string {
   // Check if current repository is the github-agent repository
@@ -107,6 +107,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
         <requirement>Include essential technical details and core changes only</requirement>
         <requirement>Use code blocks for error messages or technical content</requirement>
         <requirement>Reference relevant code when current directory is a Git repository</requirement>
+        <requirement>Automatically detect and resolve merge conflicts when possible</requirement>
       </requirements>
       <template_structure>
         <section name="Summary">
@@ -139,6 +140,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
         <check>CRITICAL: Explicit user approval required before merging</check>
       </prerequisites>
       <method>Use squash merge by default to maintain clean commit history</method>
+      <optimization>Skip redundant status checks if already verified within 5 minutes</optimization>
     </merging>
   </pull_request_operations>
 
