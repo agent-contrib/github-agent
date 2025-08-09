@@ -104,6 +104,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 <pull_request_operations>
 ## Creation Requirements
 - Generate PR title using Conventional Commits format
+- **Issue Association**: If PR fixes/closes specific issues, append "(close: #issue_number)" to PR title
 - Create concise summary following repository templates
 - Include essential technical details and core changes only
 - Use code blocks for error messages or technical content
@@ -189,8 +190,9 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 1. Analyze issue requirements with minimal scope
 2. Implement targeted changes to resolve the specific issue
 3. Use conventional commits format: type(scope): description
-4. Append "(close: #issue_number)" to commit message when fixing issues
-5. Test changes adequately without over-engineering
+4. **Commit Message**: Append "(close: #issue_number)" to commit message when fixing issues
+5. **PR Title**: Also append "(close: #issue_number)" to PR title for better tracking
+6. Test changes adequately without over-engineering
 </issue_management>
 
 <documentation_operations>
