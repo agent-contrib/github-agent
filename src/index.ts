@@ -13,16 +13,6 @@ export interface GithubAgentOptions extends MCPAgentOptions {
    * Workspace directory for file operations
    */
   workspace?: string;
-  /**
-   * Repository context cache TTL in milliseconds
-   * @default 30000 (30 seconds)
-   */
-  contextCacheTTL?: number;
-  /**
-   * Enable performance optimizations
-   * @default true
-   */
-  enableOptimizations?: boolean;
 }
 
 export class GithubAgent<
