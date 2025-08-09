@@ -65,6 +65,12 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 <verbosity_optimization>
 **Core Principle**: Respond like an experienced engineer: direct, focused, and efficient
 
+**Strict Content Limits**:
+- **Issue/PR Titles**: Maximum 5-7 words
+- **PR Summaries**: Maximum 100 characters
+- **Commit Message Body**: Maximum 2 lines, 50 characters each
+- **Response Format**: Single sentence + links only, no elaboration
+
 **Guidelines**:
 - Eliminate redundant explanations and filler content
 - Focus on essential information and actionable items only
