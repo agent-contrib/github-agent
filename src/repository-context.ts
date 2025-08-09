@@ -28,17 +28,31 @@ export interface GitRemote {
 
 /**
  * Repository context manager for automatic context injection
+ * Features: intelligent caching, graceful error handling, performance optimization
  */
 export class RepositoryContextManager {
   private context?: RepositoryContext;
   private readonly cacheTTL = 30000; // 30 seconds cache
+  private isUpdating = false; // Prevent concurrent updates
 
   /**
-   * Get current repository context with caching
+   * Get current repository context with intelligent caching
+   * Prevents concurrent updates and provides immediate fallback
    */
   async getContext(): Promise<RepositoryContext> {
     if (this.isContextValid()) {
       return this.context!;
+    }
+
+    // Prevent concurrent updates
+    if (this.isUpdating) {
+      // Return stale context if available, otherwise wait
+      if (this.context) {
+        return this.context;
+      }
+      // Wait for ongoing update with timeout
+      await this.waitForUpdate(5000);
+      return this.context || this.createFallbackContext();
     }
 
     await this.updateContext();
@@ -68,8 +82,14 @@ export class RepositoryContextManager {
 
   /**
    * Update repository context by gathering fresh information
+   * Enhanced with concurrent update prevention and better error handling
    */
   private async updateContext(): Promise<void> {
+    if (this.isUpdating) {
+      return;
+    }
+
+    this.isUpdating = true;
     try {
       const workingDirectory = process.cwd();
       const gitRemotes = await this.getGitRemotes();
@@ -83,13 +103,9 @@ export class RepositoryContextManager {
         lastUpdated: new Date(),
       };
     } catch (error) {
-      this.context = {
-        workingDirectory: process.cwd(),
-        isValidGitRepo: false,
-        gitRemotes: [],
-        validationError: error instanceof Error ? error.message : 'Unknown error',
-        lastUpdated: new Date(),
-      };
+      this.context = this.createErrorContext(error);
+    } finally {
+      this.isUpdating = false;
     }
   }
 
@@ -164,6 +180,42 @@ export class RepositoryContextManager {
     }
 
     return null;
+  }
+
+  /**
+   * Wait for ongoing update with timeout
+   */
+  private async waitForUpdate(timeoutMs: number): Promise<void> {
+    const startTime = Date.now();
+    while (this.isUpdating && (Date.now() - startTime) < timeoutMs) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+  }
+
+  /**
+   * Create fallback context when all else fails
+   */
+  private createFallbackContext(): RepositoryContext {
+    return {
+      workingDirectory: process.cwd(),
+      isValidGitRepo: false,
+      gitRemotes: [],
+      validationError: 'Unable to determine repository context',
+      lastUpdated: new Date(),
+    };
+  }
+
+  /**
+   * Create error context with proper error handling
+   */
+  private createErrorContext(error: unknown): RepositoryContext {
+    return {
+      workingDirectory: process.cwd(),
+      isValidGitRepo: false,
+      gitRemotes: [],
+      validationError: error instanceof Error ? error.message : 'Unknown error',
+      lastUpdated: new Date(),
+    };
   }
 
   /**

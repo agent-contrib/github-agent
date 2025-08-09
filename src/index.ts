@@ -80,12 +80,17 @@ export class GithubAgent<
 
   /**
    * Hook called before preparing each LLM request
-   * Automatically injects repository context into system prompt
+   * Automatically injects repository context into system prompt with enhanced error handling
    */
   async onPrepareRequest(context: PrepareRequestContext): Promise<PrepareRequestResult> {
     try {
-      // Gather repository context
-      const repositoryContext = await this.repositoryContextManager.getContext();
+      // Gather repository context with timeout
+      const repositoryContext = await Promise.race([
+        this.repositoryContextManager.getContext(),
+        new Promise<never>((_, reject) => 
+          setTimeout(() => reject(new Error('Context timeout')), 5000)
+        )
+      ]);
       
       // Build repository context section
       const repositoryContextSection = this.repositoryContextManager.buildContextSection(repositoryContext);
@@ -99,7 +104,7 @@ export class GithubAgent<
       };
     } catch (error) {
       // Fallback to base prompt if context injection fails
-      console.warn('Failed to inject repository context:', error);
+      console.warn('Failed to inject repository context, using fallback:', error instanceof Error ? error.message : error);
       return {
         systemPrompt: generateSystemPrompt(this.languageConfig),
         tools: context.tools,
