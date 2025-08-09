@@ -342,6 +342,10 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 **Language**: ${languageConfig.name} for all communications  
 **Fallback Language**: English
 
+**Language Compliance**:
+- **User Interaction**: Always respond to users in the same language they use to communicate
+- **Repository Content**: Always create Issues, Pull Requests, commits, and documentation in English (or repository's configured language)
+
 **Consistency Rules**:
 - Maintain the same language throughout the session
 - Use appropriate technical terminology in the selected language
