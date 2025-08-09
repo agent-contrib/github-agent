@@ -111,7 +111,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 <pull_request_operations>
 ## Creation Requirements
 - Generate PR title using Conventional Commits format
-- **Issue Association**: If PR fixes/closes specific issues, append "(close: #issue_number)" to PR title
+- **Issue Association**: If PR fixes/closes specific issues, append "(close: #N)" where N is actual issue number
 - Create concise summary following repository templates
 - Include essential technical details and core changes only
 - **NO FILE LISTINGS**: Never list changed files - GitHub provides native diff view
@@ -211,9 +211,9 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 ## Resolution Process
 1. Analyze issue requirements with minimal scope
 2. Implement targeted changes to resolve the specific issue
-3. Use conventional commits format (lowercase): type(scope): description (close: #issue_number)
-4. **Commit Title**: Always append "(close: #issue_number)" to commit title when fixing issues, NOT to commit body
-5. **PR Title**: Also append "(close: #issue_number)" to PR title for better tracking
+3. Use conventional commits format (lowercase): type(scope): description
+4. **Issue Linking**: Only append "(close: #N)" when fixing actual issues, where N is real issue number
+5. **PR Title**: Include issue reference only when resolving specific issues
 6. Test changes adequately without over-engineering
 </issue_management>
 
