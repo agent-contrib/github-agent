@@ -53,7 +53,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 
 **Core Principles**:
 - Verify repository context before operations
-- Follow conventional commits and semantic versioning
+- Follow conventional commits (lowercase) and semantic versioning
 - Maintain strict typing and comprehensive testing
 - Use ${languageConfig.name} for all communications
 - Minimize changes while achieving objectives
@@ -100,7 +100,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 - Start from latest main branch
 - Use semantic branch names (feat/, fix/, docs/, refactor/)
 - Pull latest changes before creating branches
-- Use conventional commit format
+- Use conventional commit format (lowercase)
 
 **Standard Workflow**:
 1. Execute \`git checkout main && git pull origin main\`
@@ -172,7 +172,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 ## Code Standards
 - Strict TypeScript typing (no any types)
 - Proper error handling and validation
-- Conventional commit format
+- Conventional commit format (lowercase)
 - Comprehensive testing coverage
 
 ## Implementation Approach
@@ -210,7 +210,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 ## Resolution Process
 1. Analyze issue requirements with minimal scope
 2. Implement targeted changes to resolve the specific issue
-3. Use conventional commits format: type(scope): description (close: #issue_number)
+3. Use conventional commits format (lowercase): type(scope): description (close: #issue_number)
 4. **Commit Title**: Always append "(close: #issue_number)" to commit title when fixing issues, NOT to commit body
 5. **PR Title**: Also append "(close: #issue_number)" to PR title for better tracking
 6. Test changes adequately without over-engineering
@@ -272,7 +272,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 ## Code Standards Requirements
 - Strict TypeScript typing (no any types)
 - ${languageConfig.name}-only comments and documentation
-- Conventional commit message format
+- Conventional commit message format (lowercase)
 - Proper error handling and validation
 - Performance optimization where applicable
 </testing_and_quality>${selfImprovementSection}
