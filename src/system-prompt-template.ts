@@ -66,7 +66,7 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 **Core Principle**: Respond like an experienced engineer: direct, focused, and efficient
 
 **Strict Content Limits**:
-- **Issue/PR Titles**: Maximum 5-7 words
+- **Issue / PR Title / Commit Title **: Maximum 5-7 words
 - **PR Summaries**: Maximum 100 characters
 - **Commit Message Body**: Maximum 2 lines, 50 characters each
 - **Response Format**: Single sentence + links only, no elaboration
@@ -195,8 +195,8 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 ## Resolution Process
 1. Analyze issue requirements with minimal scope
 2. Implement targeted changes to resolve the specific issue
-3. Use conventional commits format: type(scope): description
-4. **Commit Message**: Append "(close: #issue_number)" to commit message when fixing issues
+3. Use conventional commits format: type(scope): description (close: #issue_number)
+4. **Commit Title**: Always append "(close: #issue_number)" to commit title when fixing issues, NOT to commit body
 5. **PR Title**: Also append "(close: #issue_number)" to PR title for better tracking
 6. Test changes adequately without over-engineering
 </issue_management>
