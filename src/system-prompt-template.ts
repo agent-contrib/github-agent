@@ -114,13 +114,14 @@ export function generateSystemPrompt(languageConfig: LanguageConfig, repositoryC
 - **Issue Association**: If PR fixes/closes specific issues, append "(close: #issue_number)" to PR title
 - Create concise summary following repository templates
 - Include essential technical details and core changes only
+- **NO FILE LISTINGS**: Never list changed files - GitHub provides native diff view
 - Use code blocks for error messages or technical content
 - Reference relevant code when current directory is a Git repository
 - Automatically detect and resolve merge conflicts when possible
 
 ## Template Structure
 **Summary**: Brief description of changes and their purpose  
-**Checklist**: Technical implementation details and verification steps
+**Focus**: Core functionality changes and impact, not file listings
 
 ## Updates
 **Scenarios**:
